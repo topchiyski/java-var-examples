@@ -11,6 +11,7 @@ This repository accompanies the LinkedIn article **"Why Your Java `var` Code Fai
 
 ```text
 java-var-examples/
+├── LICENSE
 ├── pom.xml
 ├── README.md
 └── src/
@@ -79,3 +80,7 @@ Generate HTML API documentation for the production classes:
 mvn javadoc:javadoc
 ```
 The documentation is written to `target/reports/apidocs/index.html`.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
