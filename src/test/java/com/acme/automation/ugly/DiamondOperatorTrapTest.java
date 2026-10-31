@@ -13,21 +13,17 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Pillar 2 (The Ugly - Edge Case 3C / Guideline G6): Combining {@code var} with the
  * Diamond Operator ({@code <>}).
  * <p>
- * The diamond operator infers type arguments from the target type. With {@code var}
- * there is no target type, so unless constructor arguments supply the type, the
- * type arguments fall back to {@code Object}.
+ * With no target type and no constructor arguments, {@code <>} infers {@code Object}.
  */
 class DiamondOperatorTrapTest {
 
     /**
-     * Source of the elements added to the lists.
+     * Source of the list elements.
      */
     private final WebDriver driver = new MockWebDriver();
 
     /**
-     * Trap: {@code var activeElements = new ArrayList<>()} infers {@code ArrayList<Object>},
-     * so adding a {@link By} and a {@link String} compiles, and the mistake surfaces only as
-     * a {@link ClassCastException} at runtime.
+     * Trap: {@code var} with {@code new ArrayList<>()} accepts anything and fails at runtime.
      */
     @Test
     void diamondOperatorTrap_Junior_SilentlyInfersObject() {
@@ -49,9 +45,7 @@ class DiamondOperatorTrapTest {
     }
 
     /**
-     * Fix: give the compiler a type, either explicitly on the right-hand side
-     * ({@code new ArrayList<WebElement>()}) or through a typed constructor argument,
-     * so that wrong element types are rejected at compile time.
+     * Fix: supply the type on the right-hand side or through a typed constructor argument.
      */
     @Test
     void diamondOperatorSafe_SeniorPattern_ExplicitRhsOrConstructorArg() {

@@ -8,21 +8,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Pillar 2 (The Ugly - Edge Case 3A): Non-Denotable Anonymous Class Types vs. Local Records.
  * <p>
- * {@code var} can hold a type that has no name in source code: the synthetic class of an
- * anonymous class instance. That makes the instance's extra members accessible, which is
- * useful for a quick test spy but a trap for general-purpose local state.
+ * {@code var} keeps an anonymous class's unnamed type: handy for test spies, a trap for local state.
  */
 class AnonymousClassSpyTest {
 
     /**
-     * Driver whose elements the spy observes.
+     * Driver the spy observes.
      */
     private final WebDriver driver = new MockWebDriver();
 
     /**
-     * Legitimate use: a click-counting spy declared as an anonymous {@link WebDriverListener}.
-     * Because {@code var} keeps the anonymous type, the test can read {@code clickCount} and
-     * {@code lastTag} and call {@code reset()} directly, without a named spy class.
+     * Good: {@code var} lets the test read the anonymous spy's extra fields and methods.
      */
     @Test
     void spyWithNonDenotableVar_AdHocMembersAccessible() {
@@ -54,9 +50,7 @@ class AnonymousClassSpyTest {
     }
 
     /**
-     * Fix for ad-hoc local state: a local record gives the state a nameable type, so a
-     * second instance can be created and compared, which an anonymous {@code Object}
-     * subclass held in {@code var} does not allow.
+     * Good: use a local record, not an anonymous {@code Object}, for structured local state.
      */
     @Test
     void structuredLocalState_SeniorPattern_LocalRecordInsteadOfAnonymousObjectBag() {

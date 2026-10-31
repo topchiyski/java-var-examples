@@ -13,50 +13,36 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Pillar 2 (The Bad): Opaque Helper Calls &amp; Wide Variable Scope Bugs
  * (Principles P2, P3 &amp; Guidelines G1, G2).
  * <p>
- * {@code var} removes the type from the declaration, so the variable name and the
- * initializer must carry that information instead. These tests contrast code that is
- * unreadable outside an IDE (for example, in a pull request diff) with code that
- * stays readable.
+ * With {@code var}, names must carry the type information, or code becomes unreadable
+ * outside an IDE, such as in a pull request diff.
  */
 class ReadabilityAndScopeTest {
 
     // Opaque helper names (anti-pattern)
 
     /**
-     * Opaque helper: the name does not reveal that it returns a {@link By} locator.
-     *
-     * @param id the element id
-     * @return a locator for the id
+     * Opaque: the name hides that it returns a {@link By}.
      */
     private By get(String id) {
         return By.id(id);
     }
 
     /**
-     * Opaque helper: the name does not reveal that it returns a {@link WebElement}.
-     *
-     * @param locator the element locator (ignored)
-     * @return a mock submit button
+     * Opaque: the name hides that it returns a {@link WebElement}.
      */
     private WebElement find(By locator) {
         return new MockWebElement("button", "Submit");
     }
 
     /**
-     * Opaque helper: the name does not reveal what it processes or what it returns.
-     *
-     * @param id the order id
-     * @return a successful result for the id
+     * Opaque: the name hides what it processes and returns.
      */
     private OrderBatchResult processData(String id) {
         return new OrderBatchResult(200, id);
     }
 
     /**
-     * Opaque helper with no arguments, used to show that an explicit type keeps
-     * the call readable when the method name cannot be changed.
-     *
-     * @return a successful result for batch {@code "BATCH-1"}
+     * Opaque, and without arguments there is nothing to hint at the result type.
      */
     private OrderBatchResult processData() {
         return new OrderBatchResult(200, "BATCH-1");
@@ -65,57 +51,42 @@ class ReadabilityAndScopeTest {
     // Descriptive helper names (senior pattern)
 
     /**
-     * Descriptive helper: builds a locator for a test id.
-     *
-     * @param id the element id
-     * @return a locator for the id
+     * Builds a locator for a test id.
      */
     private By buildTestIdLocator(String id) {
         return By.id(id);
     }
 
     /**
-     * Descriptive helper: waits until the located element is visible.
-     *
-     * @param locator the element locator (ignored)
-     * @return a mock submit button
+     * Waits until the located element is visible.
      */
     private WebElement waitForVisibleElement(By locator) {
         return new MockWebElement("button", "Submit");
     }
 
     /**
-     * Descriptive helper: submits the order with the given id.
-     *
-     * @param id the order id
-     * @return a successful submission result
+     * Submits the order with the given id.
      */
     private OrderBatchResult submitOrderById(String id) {
         return new OrderBatchResult(200, id);
     }
 
     /**
-     * Descriptive helper: returns the currently open modal dialog.
-     *
-     * @return a mock modal element
+     * Returns the open modal dialog.
      */
     private WebElement getActiveModal() {
         return new MockWebElement("div", "Modal");
     }
 
     /**
-     * Returns order ids in a fixed order.
-     *
-     * @return the ids {@code "ORD-1"} and {@code "ORD-2"}, in that order
+     * Returns {@code "ORD-1"} and {@code "ORD-2"}, in that order.
      */
     private List<String> fetchIds() {
         return List.of("ORD-1", "ORD-2");
     }
 
     /**
-     * Anti-pattern: short variable names combined with opaque helper names.
-     * Without IDE type hints, a reviewer cannot tell what {@code r}, {@code el},
-     * or {@code res} are.
+     * Bad: short variable names plus opaque helpers leave every type unknown.
      */
     @Test
     void checkoutFlow_Bad_OpaqueVarInBrowserDiff() {
@@ -128,10 +99,7 @@ class ReadabilityAndScopeTest {
     }
 
     /**
-     * Fix: type information is carried by at least one of three channels — the variable
-     * name, the method name, or an explicit type. With {@code var}, the variable and
-     * method names must carry it; when an opaque method cannot be renamed, keep the
-     * explicit type.
+     * Good: type information comes from the variable name, the method name, or an explicit type.
      */
     @Test
     void checkoutFlow_Good_ThreeChannelConservationLaw() {
@@ -148,11 +116,8 @@ class ReadabilityAndScopeTest {
     }
 
     /**
-     * Anti-pattern vs. fix for variable scope. {@code var items = new HashSet<>(...)} declared
-     * far above its usage leaves the reader seeing only {@code items}, without the hint that
-     * iteration order is not insertion order. Declaring the variable next to its usage, with a
-     * collection whose semantics match the intent ({@link ArrayList} keeps insertion order),
-     * keeps the behavior visible.
+     * Bad vs. good: declare {@code var} next to its usage, so the collection type and its
+     * ordering stay visible.
      */
     @Test
     void scopeLeakage_JuniorTrap_Vs_SeniorTightScope() {

@@ -37,7 +37,7 @@ Each example is a pair: an anti-pattern or "before" version next to the recommen
 - **`main/`** – Pillar 1: how `var` works in the compiler.
 - **`test/.../good/`** – Recommended uses of `var` in test code.
 - **`test/.../bad/`** – Common misuses of `var`, each shown next to the corrected version.
-- **`test/.../ugly/`** – Type system edge cases where `var` compiles but behaves unexpectedly, each with the safer alternative.
+- **`test/.../ugly/`** – Type system edge cases where `var` infers a surprising type, each with the safer alternative.
 - **`test/.../support/`** – Lightweight stubs for WebDriver, RestAssured, and DTOs, so every example compiles and runs without a browser or server.
 
 > **Note:** The stubs in `TestMocks` mimic the shape of the real Selenium and RestAssured APIs but return fixed canned values. For example, `WebDriverWait.until()` evaluates its condition once without waiting, and `RestAssuredStub.as()` always returns the same map. They exist only to make the `var` examples compile and run; don't use them as a reference for real API behavior.

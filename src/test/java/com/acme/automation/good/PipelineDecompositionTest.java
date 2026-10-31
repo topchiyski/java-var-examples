@@ -13,17 +13,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Pillar 2 (The Good): Breaking Monolithic Chains into Diagnostic Checkpoints (Guideline G4).
  * <p>
- * Long stream chains are often written as a single expression to avoid spelling out
- * verbose intermediate types. {@code var} removes that cost, so the chain can be split
- * into named steps that can be inspected in a debugger and asserted on individually.
+ * {@code var} makes intermediate types cheap to declare, so long stream chains can be split
+ * into named, debuggable steps.
  */
 class PipelineDecompositionTest {
 
     /**
-     * Returns a fixed audit log: three failures (two {@code ERR_GATEWAY_TIMEOUT}, one
-     * {@code ERR_AUTH_EXPIRED}) and one success.
-     *
-     * @return the audit log entries
+     * Returns three failures (two {@code ERR_GATEWAY_TIMEOUT}) and one success.
      */
     private List<AuditLogDto> fetchLogs() {
         return List.of(
@@ -35,8 +31,7 @@ class PipelineDecompositionTest {
     }
 
     /**
-     * Anti-pattern: the whole computation is a single assertion argument. If it fails, the
-     * message shows only the final {@code Optional}, not which step produced the wrong value.
+     * Bad: one monolithic chain; a failure doesn't show which step went wrong.
      */
     @Test
     void verifyTopError_JuniorTrap_MonolithicChain() {
@@ -55,8 +50,7 @@ class PipelineDecompositionTest {
     }
 
     /**
-     * Fix: each intermediate result gets a descriptive name via {@code var}, and the
-     * frequency map gets its own described assertion, so a failure points to the step at fault.
+     * Good: named intermediate steps, each of which can be inspected and asserted on.
      */
     @Test
     void verifyTopError_SeniorPattern_NamedCheckpointsWithVar() {

@@ -12,17 +12,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Pillar 2 (The Ugly - Edge Case 3B): Non-Denotable Intersection Types in Heterogeneous Data.
  * <p>
- * When a generic factory receives arguments of different types and has no target type,
- * javac infers their Least Upper Bound (LUB): an intersection of every supertype they share.
- * {@code var} preserves this intersection type, which cannot be written in source code and
- * rejects elements that do not implement every interface in it.
+ * Mixed arguments to a generic factory infer an intersection type that {@code var} keeps.
  */
 class IntersectionTypeTrapTest {
 
     /**
-     * Trap: {@code List.of("hello", 1, 2.0)} infers an intersection element type, and an
-     * {@link ArrayList} copied from it inherits that type. A list meant to collect arbitrary
-     * fuzz inputs therefore rejects a {@link Map} or a plain {@link Object} at compile time.
+     * Trap: a list copied from {@code List.of("hello", 1, 2.0)} rejects a {@link Map} or
+     * {@link Object} at compile time.
      */
     @Test
     void heterogeneousList_InferredIntersectionType() {
@@ -44,8 +40,7 @@ class IntersectionTypeTrapTest {
     }
 
     /**
-     * Fix: an explicit {@code <Object>} type witness on {@code List.of} replaces the inferred
-     * intersection type, so the copied list accepts any element.
+     * Fix: an explicit {@code <Object>} type witness makes the list accept any element.
      */
     @Test
     void heterogeneousFuzzData_SeniorPattern_ExplicitTypeWitness() {

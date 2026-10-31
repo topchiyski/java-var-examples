@@ -11,27 +11,20 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 /**
  * Pillar 2 (The Ugly - Edge Case 3D / Guideline G7): Primitive Literals &amp; Overload Resolution Traps.
  * <p>
- * With {@code var}, a numeric literal's type is decided by the literal alone: an integer
- * literal is always {@code int}, never {@code byte}, {@code short}, or {@code Integer}.
- * That can silently change which overload a method call resolves to.
+ * With {@code var}, an integer literal without a suffix is always {@code int}, which can change
+ * overload resolution.
  */
 class PrimitiveOverloadTrapTest {
 
     /**
-     * Accepts only a {@code byte}, so callers must declare the argument's type explicitly.
-     *
-     * @param flag the flag to check
-     * @return {@code true} if the flag is {@code 0x01}
+     * Returns whether the flag is {@code 0x01}; accepts only a {@code byte}.
      */
     private boolean verifyByteFlag(byte flag) {
         return flag == 0x01;
     }
 
     /**
-     * Trap: {@code var codeToRemove = 200} infers {@code int}, so
-     * {@code statusCodes.remove(codeToRemove)} resolves to {@link List#remove(int)}
-     * (remove by index) instead of {@link java.util.Collection#remove(Object)}
-     * (remove by value), and throws {@link IndexOutOfBoundsException}.
+     * Trap: an {@code int} from {@code var} calls {@link List#remove(int)} (by index), not remove by value.
      */
     @Test
     void numericOverloadTrap_Junior_RemoveByIndexExplosion() {
@@ -47,10 +40,7 @@ class PrimitiveOverloadTrapTest {
     }
 
     /**
-     * Fix: declare {@code byte} and {@code short} explicitly, use the {@code L} and
-     * {@code d} literal suffixes when {@code var} should infer {@code long} or
-     * {@code double}, and box explicitly with {@link Integer#valueOf(int)} to remove
-     * by value.
+     * Fix: explicit {@code byte}, literal suffixes, and {@link Integer#valueOf(int)} to remove by value.
      */
     @Test
     void numericOverloadSafe_SeniorPattern_ExplicitPrimitivesAndBoxedRemoval() {
