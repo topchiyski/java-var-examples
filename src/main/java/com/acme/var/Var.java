@@ -6,6 +6,8 @@ package com.acme.var;
  * {@code var} is a <em>contextual keyword</em> (earlier JLS editions said "restricted identifier"):
  * it can name packages, methods, fields, and variables, but not types. {@code Var} is fine
  * because identifiers are case-sensitive; {@code class var {}} does not compile.
+ *
+ * @see <a href="https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome">Why Your Java var Code Fails Code Review (LinkedIn)</a>
  */
 public class Var {
 

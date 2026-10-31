@@ -7,6 +7,8 @@ import java.util.List;
  * <p>
  * {@code var} is resolved at compile time, so both methods compile to identical bytecode
  * and local-variable tables. Verify with {@code javap -v -c BytecodeParityDemo.class}.
+ *
+ * @see <a href="https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome">Why Your Java var Code Fails Code Review (LinkedIn)</a>
  */
 public class BytecodeParityDemo {
 

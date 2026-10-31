@@ -15,6 +15,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  * <p>
  * With {@code var}, names must carry the type information, or code becomes unreadable
  * outside an IDE, such as in a pull request diff.
+ *
+ * @see <a href="https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome">Why Your Java var Code Fails Code Review (LinkedIn)</a>
  */
 class ReadabilityAndScopeTest {
 

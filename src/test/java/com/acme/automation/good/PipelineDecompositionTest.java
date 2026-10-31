@@ -15,6 +15,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  * <p>
  * {@code var} makes intermediate types cheap to declare, so long stream chains can be split
  * into named, debuggable steps.
+ *
+ * @see <a href="https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome">Why Your Java var Code Fails Code Review (LinkedIn)</a>
  */
 class PipelineDecompositionTest {
 

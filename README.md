@@ -1,6 +1,14 @@
 # Java `var` (Local-Variable Type Inference) Examples
 
-This repository accompanies the LinkedIn article **"Why Your Java `var` Code Fails Code Review"**. It contains compilable Java 21+ examples of local-variable type inference ([JEP 286](https://openjdk.org/jeps/286)): compiler mechanics, test automation refactoring patterns, and type system edge cases.
+> **📖 Read the article first: [Why Your Java `var` Code Fails Code Review](https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome)** (LinkedIn)
+
+This repository is companion material for the article. The article explains the principles, guidelines, and reasoning; this repository contains compilable Java 21+ versions of its examples ([JEP 286](https://openjdk.org/jeps/286)), so you can run them, inspect the bytecode, and try your own changes.
+
+## How to Use This Repository with the Article
+
+1. Read a section of the [article](https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome).
+2. Find its label (for example, **G6** or **3C**) in the [Article Cross-Reference](#article-cross-reference) table to get the matching file.
+3. Run that file's tests, e.g. `mvn test -Dtest=DiamondOperatorTrapTest`, and experiment with the code.
 
 ## Prerequisites
 
@@ -44,7 +52,7 @@ Each example is a pair: an anti-pattern or "before" version next to the recommen
 
 ## Article Cross-Reference
 
-Labels match the article: **P** = Principle, **G** = Guideline, **3A–3D** = edge cases in section 3. Principles and guidelines not listed here (such as P1 and G5) are covered in the article only.
+Labels match the [article](https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome): **P** = Principle, **G** = Guideline, **3A–3D** = edge cases in section 3. Principles and guidelines not listed here (such as P1 and G5) are covered in the article only.
 
 | Article reference | Topic | File |
 |---|---|---|

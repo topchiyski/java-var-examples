@@ -13,6 +13,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Pillar 2 (The Ugly - Edge Case 3B): Non-Denotable Intersection Types in Heterogeneous Data.
  * <p>
  * Mixed arguments to a generic factory infer an intersection type that {@code var} keeps.
+ *
+ * @see <a href="https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome">Why Your Java var Code Fails Code Review (LinkedIn)</a>
  */
 class IntersectionTypeTrapTest {
 

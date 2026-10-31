@@ -14,6 +14,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Diamond Operator ({@code <>}).
  * <p>
  * With no target type and no constructor arguments, {@code <>} infers {@code Object}.
+ *
+ * @see <a href="https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome">Why Your Java var Code Fails Code Review (LinkedIn)</a>
  */
 class DiamondOperatorTrapTest {
 

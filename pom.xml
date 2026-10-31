@@ -8,6 +8,13 @@
     <artifactId>java-var-type-inference-examples</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
+    <name>Java var Examples</name>
+    <description>
+        Companion examples for the LinkedIn article "Why Your Java var Code Fails Code Review":
+        https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome
+    </description>
+    <url>https://github.com/topchiyski/java-var-examples</url>
+
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>

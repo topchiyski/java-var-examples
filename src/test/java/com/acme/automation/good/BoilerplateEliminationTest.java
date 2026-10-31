@@ -16,6 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  * <p>
  * Use {@code var} when the right-hand side or the variable name already shows the type.
  * Both tests do the same work; only the declarations differ.
+ *
+ * @see <a href="https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome">Why Your Java var Code Fails Code Review (LinkedIn)</a>
  */
 class BoilerplateEliminationTest {
 

@@ -13,6 +13,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * <p>
  * With {@code var}, an integer literal without a suffix is always {@code int}, which can change
  * overload resolution.
+ *
+ * @see <a href="https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome">Why Your Java var Code Fails Code Review (LinkedIn)</a>
  */
 class PrimitiveOverloadTrapTest {
 
