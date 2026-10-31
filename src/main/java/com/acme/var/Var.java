@@ -20,7 +20,9 @@ package com.acme.var;
  */
 public class Var {
 
-    /** A field legally named {@code var}. */
+    /**
+     * A field legally named {@code var}.
+     */
     private int var = 1;
 
     /**

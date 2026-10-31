@@ -23,10 +23,14 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 class BoilerplateEliminationTest {
 
-    /** Driver used for the UI part of both tests. */
+    /**
+     * Driver used for the UI part of both tests.
+     */
     private final WebDriver driver = new MockWebDriver();
 
-    /** Authorization spec passed to the API request. */
+    /**
+     * Authorization spec passed to the API request.
+     */
     private final String authSpec = "Bearer token";
 
     /**

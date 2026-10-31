@@ -15,7 +15,9 @@ import java.util.function.Function;
  */
 public final class TestMocks {
 
-    /** Prevents instantiation; this class only holds nested stub types and factory methods. */
+    /**
+     * Prevents instantiation; this class only holds nested stub types and factory methods.
+     */
     private TestMocks() {
     }
 
@@ -41,7 +43,9 @@ public final class TestMocks {
      * Stub of Selenium's {@code By} element locator.
      */
     public static class By {
-        /** Locator strategy and value, e.g. {@code "id:submit"}. */
+        /**
+         * Locator strategy and value, e.g. {@code "id:submit"}.
+         */
         private final String selector;
 
         /**
@@ -139,10 +143,14 @@ public final class TestMocks {
      * Every attribute lookup returns {@code "ORD-999"}.
      */
     public static class MockWebElement implements WebElement {
-        /** Tag name reported by {@link #getTagName()}. */
+        /**
+         * Tag name reported by {@link #getTagName()}.
+         */
         private final String tag;
 
-        /** Text reported by {@link #getText()}. */
+        /**
+         * Text reported by {@link #getText()}.
+         */
         private final String text;
 
         /**
@@ -276,7 +284,9 @@ public final class TestMocks {
      * @param <T> the type of driver being decorated
      */
     public static class EventFiringDecorator<T extends WebDriver> {
-        /** Listener notified before each click. */
+        /**
+         * Listener notified before each click.
+         */
         private final WebDriverListener listener;
 
         /**
@@ -355,7 +365,9 @@ public final class TestMocks {
      * immediately, without polling or waiting.
      */
     public static class WebDriverWait {
-        /** Driver passed to each condition. */
+        /**
+         * Driver passed to each condition.
+         */
         private final WebDriver driver;
 
         /**

@@ -14,7 +14,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 class AnonymousClassSpyTest {
 
-    /** Driver whose elements the spy observes. */
+    /**
+     * Driver whose elements the spy observes.
+     */
     private final WebDriver driver = new MockWebDriver();
 
     /**

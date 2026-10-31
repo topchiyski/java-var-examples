@@ -19,7 +19,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  */
 class DiamondOperatorTrapTest {
 
-    /** Source of the elements added to the lists. */
+    /**
+     * Source of the elements added to the lists.
+     */
     private final WebDriver driver = new MockWebDriver();
 
     /**
