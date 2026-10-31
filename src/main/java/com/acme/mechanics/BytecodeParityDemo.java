@@ -4,10 +4,10 @@ import java.util.List;
 
 /**
  * Pillar 1: Bytecode Parity Proof.
- *
+ * <p>
  * Compile with debug info (javac -g) and inspect with:
  * javap -v -c BytecodeParityDemo.class
- *
+ * <p>
  * Both methods produce identical bytecode instructions (ldc, astore_1, astore_2, istore_3)
  * and identical LocalVariableTable / LocalVariableTypeTable descriptors.
  */
@@ -16,7 +16,8 @@ public class BytecodeParityDemo {
     /**
      * Creates a bytecode parity example.
      */
-    public BytecodeParityDemo() {}
+    public BytecodeParityDemo() {
+    }
 
     /**
      * Computes a total using explicit local-variable types.

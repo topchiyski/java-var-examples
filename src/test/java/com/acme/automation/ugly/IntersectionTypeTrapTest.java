@@ -23,8 +23,8 @@ class IntersectionTypeTrapTest {
 
         var firstElement = inferredPayloads.get(0);
         assertThat(firstElement)
-            .isInstanceOf(Serializable.class)
-            .isInstanceOf(Comparable.class);
+                .isInstanceOf(Serializable.class)
+                .isInstanceOf(Comparable.class);
 
         // JUNIOR TRAP: Wrapping that inferred list in an ArrayList prevents adding Map or Object later!
         var trappedFuzzInputs = new ArrayList<>(List.of("hello", 1, 2.0));

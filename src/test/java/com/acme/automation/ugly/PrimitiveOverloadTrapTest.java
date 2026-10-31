@@ -27,7 +27,7 @@ class PrimitiveOverloadTrapTest {
         var codeToRemove = 200;
 
         assertThatThrownBy(() -> statusCodes.remove(codeToRemove))
-            .isInstanceOf(IndexOutOfBoundsException.class);
+                .isInstanceOf(IndexOutOfBoundsException.class);
     }
 
     @Test

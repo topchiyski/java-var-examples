@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Pillar 2 (The Good): Eliminating Boilerplate (Guideline G3).
- *
+ * <p>
  * Contrasts Java 8 explicit manifest boilerplate against Java 10+ 'var' when
  * the right-hand initializer already provides explicit type context.
  */
@@ -29,14 +29,15 @@ class BoilerplateEliminationTest {
 
         // Nested generic noise obscures the variable name
         Map<String, List<Map<String, Object>>> ordersByRegion = given()
-            .spec(authSpec)
-            .when()
-            .get("/api/v2/orders/summary")
-            .then().statusCode(200)
-            .extract().as(new TypeRef<Map<String, List<Map<String, Object>>>>() {});
+                .spec(authSpec)
+                .when()
+                .get("/api/v2/orders/summary")
+                .then().statusCode(200)
+                .extract().as(new TypeRef<Map<String, List<Map<String, Object>>>>() {
+                });
 
         WebElement euHeader = wait.until(
-            visibilityOfElementLocated(By.cssSelector("[data-region='eu']"))
+                visibilityOfElementLocated(By.cssSelector("[data-region='eu']"))
         );
 
         assertThat(opts).isNotNull();
@@ -51,14 +52,15 @@ class BoilerplateEliminationTest {
 
         // Domain variable name stands out cleanly while TypeRef supplies the exact type
         var ordersByRegion = given()
-            .spec(authSpec)
-            .when()
-            .get("/api/v2/orders/summary")
-            .then().statusCode(200)
-            .extract().as(new TypeRef<Map<String, List<Map<String, Object>>>>() {});
+                .spec(authSpec)
+                .when()
+                .get("/api/v2/orders/summary")
+                .then().statusCode(200)
+                .extract().as(new TypeRef<Map<String, List<Map<String, Object>>>>() {
+                });
 
         var euRegionHeaderElement = wait.until(
-            visibilityOfElementLocated(By.cssSelector("[data-region='eu']"))
+                visibilityOfElementLocated(By.cssSelector("[data-region='eu']"))
         );
 
         assertThat(opts).isNotNull();

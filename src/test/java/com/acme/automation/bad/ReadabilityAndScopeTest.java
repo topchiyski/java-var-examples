@@ -16,17 +16,42 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ReadabilityAndScopeTest {
 
     // Opaque helper names (anti-pattern)
-    private By get(String id) { return By.id(id); }
-    private WebElement find(By locator) { return new MockWebElement("button", "Submit"); }
-    private OrderBatchResult processData(String id) { return new OrderBatchResult(200, id); }
-    private OrderBatchResult processData() { return new OrderBatchResult(200, "BATCH-1"); }
+    private By get(String id) {
+        return By.id(id);
+    }
+
+    private WebElement find(By locator) {
+        return new MockWebElement("button", "Submit");
+    }
+
+    private OrderBatchResult processData(String id) {
+        return new OrderBatchResult(200, id);
+    }
+
+    private OrderBatchResult processData() {
+        return new OrderBatchResult(200, "BATCH-1");
+    }
 
     // Descriptive helper names (senior pattern)
-    private By buildTestIdLocator(String id) { return By.id(id); }
-    private WebElement waitForVisibleElement(By locator) { return new MockWebElement("button", "Submit"); }
-    private OrderBatchResult submitOrderById(String id) { return new OrderBatchResult(200, id); }
-    private WebElement getActiveModal() { return new MockWebElement("div", "Modal"); }
-    private List<String> fetchIds() { return List.of("ORD-1", "ORD-2"); }
+    private By buildTestIdLocator(String id) {
+        return By.id(id);
+    }
+
+    private WebElement waitForVisibleElement(By locator) {
+        return new MockWebElement("button", "Submit");
+    }
+
+    private OrderBatchResult submitOrderById(String id) {
+        return new OrderBatchResult(200, id);
+    }
+
+    private WebElement getActiveModal() {
+        return new MockWebElement("div", "Modal");
+    }
+
+    private List<String> fetchIds() {
+        return List.of("ORD-1", "ORD-2");
+    }
 
     @Test
     void checkoutFlow_Bad_OpaqueVarInBrowserDiff() {

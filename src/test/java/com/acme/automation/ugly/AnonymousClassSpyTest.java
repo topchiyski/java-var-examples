@@ -47,7 +47,8 @@ class AnonymousClassSpyTest {
         // prevents reassigning 'ctx' later because every anonymous class has a distinct synthetic type.
 
         // SENIOR PATTERN: Use a Java 16+ local record for denotable, type-safe local test state.
-        record AuthContext(String token, int retries) {}
+        record AuthContext(String token, int retries) {
+        }
 
         var initialCtx = new AuthContext("Bearer xyz", 3);
         var refreshedCtx = new AuthContext("Bearer new", 5);

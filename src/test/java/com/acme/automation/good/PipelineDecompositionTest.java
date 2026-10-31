@@ -17,10 +17,10 @@ class PipelineDecompositionTest {
 
     private List<AuditLogDto> fetchLogs() {
         return List.of(
-            new AuditLogDto("FAILED", "ERR_GATEWAY_TIMEOUT"),
-            new AuditLogDto("FAILED", "ERR_GATEWAY_TIMEOUT"),
-            new AuditLogDto("FAILED", "ERR_AUTH_EXPIRED"),
-            new AuditLogDto("SUCCESS", "NONE")
+                new AuditLogDto("FAILED", "ERR_GATEWAY_TIMEOUT"),
+                new AuditLogDto("FAILED", "ERR_GATEWAY_TIMEOUT"),
+                new AuditLogDto("FAILED", "ERR_AUTH_EXPIRED"),
+                new AuditLogDto("SUCCESS", "NONE")
         );
     }
 
@@ -31,12 +31,12 @@ class PipelineDecompositionTest {
         // JUNIOR TRAP: Chaining everything into a single statement just to avoid
         // declaring intermediate Map<String, Long> and Optional<Map.Entry<String, Long>> types.
         assertThat(
-            logs.stream()
-                .filter(l -> "FAILED".equals(l.status()))
-                .collect(groupingBy(AuditLogDto::errorCode, counting()))
-                .entrySet().stream()
-                .max(Map.Entry.comparingByValue())
-                .map(Map.Entry::getKey)
+                logs.stream()
+                        .filter(l -> "FAILED".equals(l.status()))
+                        .collect(groupingBy(AuditLogDto::errorCode, counting()))
+                        .entrySet().stream()
+                        .max(Map.Entry.comparingByValue())
+                        .map(Map.Entry::getKey)
         ).contains("ERR_GATEWAY_TIMEOUT");
     }
 
@@ -46,18 +46,18 @@ class PipelineDecompositionTest {
 
         // Step 1: Inferred Map<String, Long> enables instant inspection & descriptive assertion
         var errorFrequencyByCode = auditLogs.stream()
-            .filter(l -> "FAILED".equals(l.status()))
-            .collect(groupingBy(AuditLogDto::errorCode, counting()));
+                .filter(l -> "FAILED".equals(l.status()))
+                .collect(groupingBy(AuditLogDto::errorCode, counting()));
 
         // Step 2: Inferred Optional<Map.Entry<String, Long>>
         var topErrorEntry = errorFrequencyByCode.entrySet().stream()
-            .max(Map.Entry.comparingByValue());
+                .max(Map.Entry.comparingByValue());
 
         assertThat(errorFrequencyByCode)
-            .as("Audit log failure frequency map")
-            .containsKey("ERR_GATEWAY_TIMEOUT");
+                .as("Audit log failure frequency map")
+                .containsKey("ERR_GATEWAY_TIMEOUT");
 
         assertThat(topErrorEntry.map(Map.Entry::getKey))
-            .contains("ERR_GATEWAY_TIMEOUT");
+                .contains("ERR_GATEWAY_TIMEOUT");
     }
 }

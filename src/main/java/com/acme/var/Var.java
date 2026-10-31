@@ -2,10 +2,10 @@ package com.acme.var;
 
 /**
  * Pillar 1: JLS §3.8 Restricted Identifier Demo.
- *
+ * <p>
  * Under Java Language Specification §3.8 and §3.9, 'var' is NOT a keyword;
  * it is a restricted identifier (TypeIdentifier).
- *
+ * <p>
  * Therefore:
  * - Package names can contain 'var' (com.acme.var)
  * - Capitalized class names can be 'Var' (case-sensitive)
@@ -20,7 +20,8 @@ public class Var {
     /**
      * Creates an example of the {@code var} restricted identifier.
      */
-    public Var() {}
+    public Var() {
+    }
 
     /**
      * Returns the value of the field whose name is the restricted identifier {@code var}.
