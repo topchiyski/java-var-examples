@@ -14,14 +14,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Pillar 2 (The Good): Eliminating Boilerplate (Guideline G3).
  * <p>
- * Contrasts Java 8 explicit manifest boilerplate against Java 10+ 'var' when
- * the right-hand initializer already provides explicit type context.
+ * Contrasts Java 8 explicit manifest boilerplate against Java 10+ {@code var} when
+ * the right-hand initializer already provides explicit type context: a constructor call,
+ * a typed factory, or a type token such as {@link TypeRef}.
+ * <p>
+ * Both tests perform the same Selenium and RestAssured steps and assertions; only the
+ * local-variable declarations differ.
  */
 class BoilerplateEliminationTest {
 
+    /** Driver used for the UI part of both tests. */
     private final WebDriver driver = new MockWebDriver();
+
+    /** Authorization spec passed to the API request. */
     private final String authSpec = "Bearer token";
 
+    /**
+     * Before: every local variable repeats a type that is already visible on the
+     * right-hand side, including a nested generic type that is written out twice.
+     */
     @Test
     void verifyOrdersExplicit_Before() {
         ChromeOptions opts = new ChromeOptions();
@@ -45,6 +56,10 @@ class BoilerplateEliminationTest {
         assertThat(ordersByRegion.get("EU")).isNotEmpty();
     }
 
+    /**
+     * After: {@code var} removes the duplicated types, so the domain variable names line up
+     * and stand out. Each type is still visible on the right-hand side.
+     */
     @Test
     void verifyOrdersInferred_After() {
         var opts = new ChromeOptions();
