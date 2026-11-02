@@ -2,7 +2,7 @@
 
 > **📖 Read the article first: [Why Your Java `var` Code Fails Code Review](https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome)** (LinkedIn)
 
-This repository is companion material for the article. The article explains the principles, guidelines, and reasoning; this repository contains compilable Java 21+ versions of its examples ([JEP 286](https://openjdk.org/jeps/286)), so you can run them, inspect the bytecode, and try your own changes.
+This repository is a complementary resource to my LinkedIn article [Why Your Java `var` Code Fails Code Review](https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome). The article explains the principles, guidelines, and reasoning; this repository contains compilable Java 21+ versions of its examples ([JEP 286](https://openjdk.org/jeps/286)), so you can run them, inspect the bytecode, and try your own changes.
 
 ## How to Use This Repository with the Article
 
@@ -40,7 +40,7 @@ java-var-examples/
             └── PrimitiveOverloadTrapTest.java
 ```
 
-Each example is a pair: an anti-pattern or "before" version next to the recommended version. Comments marked `TRAP`, `JUNIOR TRAP`, or `BAD` show the problem; `SENIOR PATTERN` / `GOOD` show the fix. Every class and test method has Javadoc explaining what it demonstrates.
+Each example is a pair: an anti-pattern or "before" version next to the recommended version. Comments marked `TRAP`, `JUNIOR TRAP`, or `BAD` show the problem; `SENIOR PATTERN` / `GOOD` show the fix. Every test class and test method has Javadoc explaining what it demonstrates.
 
 - **`main/`** – Pillar 1: how `var` works in the compiler.
 - **`test/.../good/`** – Recommended uses of `var` in test code.
@@ -100,6 +100,10 @@ Most of the explanations are in the test classes. They are package-private, so p
 mvn javadoc:test-javadoc -Dshow=private
 ```
 The documentation is written to `target/reports/testapidocs/index.html`.
+
+## Contact
+
+Stoyan Topchiyski – [LinkedIn](https://www.linkedin.com/in/stoyan-topchiyski/)
 
 ## License
 
