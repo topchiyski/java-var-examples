@@ -11,12 +11,8 @@ import static java.util.stream.Collectors.groupingBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Pillar 2 (The Good): Breaking Monolithic Chains into Diagnostic Checkpoints (Guideline G4).
- * <p>
  * {@code var} makes intermediate types cheap to declare, so long stream chains can be split
  * into named, debuggable steps.
- *
- * @see <a href="https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome">Why Your Java var Code Fails Code Review (LinkedIn)</a>
  */
 class PipelineDecompositionTest {
 

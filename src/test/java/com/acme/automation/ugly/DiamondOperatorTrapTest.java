@@ -10,12 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
- * Pillar 2 (The Ugly - Edge Case 3C / Guideline G6): Combining {@code var} with the
- * Diamond Operator ({@code <>}).
- * <p>
- * With no target type and no constructor arguments, {@code <>} infers {@code Object}.
- *
- * @see <a href="https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome">Why Your Java var Code Fails Code Review (LinkedIn)</a>
+ * With {@code var}, the diamond operator has no target type, so without constructor arguments
+ * {@code <>} infers {@code Object}.
  */
 class DiamondOperatorTrapTest {
 

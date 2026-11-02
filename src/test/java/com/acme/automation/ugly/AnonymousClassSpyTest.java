@@ -6,11 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Pillar 2 (The Ugly - Edge Case 3A): Non-Denotable Anonymous Class Types vs. Local Records.
- * <p>
  * {@code var} keeps an anonymous class's unnamed type: handy for test spies, a trap for local state.
- *
- * @see <a href="https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome">Why Your Java var Code Fails Code Review (LinkedIn)</a>
  */
 class AnonymousClassSpyTest {
 

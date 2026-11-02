@@ -9,12 +9,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
- * Pillar 2 (The Ugly - Edge Case 3D / Guideline G7): Primitive Literals &amp; Overload Resolution Traps.
- * <p>
  * With {@code var}, an integer literal without a suffix is always {@code int}, which can change
  * overload resolution.
- *
- * @see <a href="https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome">Why Your Java var Code Fails Code Review (LinkedIn)</a>
  */
 class PrimitiveOverloadTrapTest {
 
@@ -46,7 +42,7 @@ class PrimitiveOverloadTrapTest {
      */
     @Test
     void numericOverloadSafe_SeniorPattern_ExplicitPrimitivesAndBoxedRemoval() {
-        // Rule 1 (Guideline G7): Keep explicit 'byte' and 'short' declarations
+        // Rule 1: Keep explicit 'byte' and 'short' declarations
         // because integer literals with 'var' always infer 'int'.
         byte expectedFlag = 0x01;
         var pollDelayMs = 5000L; // Explicit 'L' suffix infers 'long'

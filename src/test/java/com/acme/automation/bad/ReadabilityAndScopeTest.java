@@ -10,13 +10,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Pillar 2 (The Bad): Opaque Helper Calls &amp; Wide Variable Scope Bugs
- * (Principles P2, P3 &amp; Guidelines G1, G2).
- * <p>
  * With {@code var}, names must carry the type information, or code becomes unreadable
  * outside an IDE, such as in a pull request diff.
- *
- * @see <a href="https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome">Why Your Java var Code Fails Code Review (LinkedIn)</a>
  */
 class ReadabilityAndScopeTest {
 
@@ -105,7 +100,7 @@ class ReadabilityAndScopeTest {
      */
     @Test
     void checkoutFlow_Good_ThreeChannelConservationLaw() {
-        // GOOD: Descriptive variable & method names carry the semantic weight (G1, G3),
+        // GOOD: Descriptive variable & method names carry the semantic weight,
         // or explicit types are preserved when calling an opaque method like processData().
         var checkoutBtnLocator = buildTestIdLocator("checkout-btn");
         var checkoutSubmitBtn = waitForVisibleElement(checkoutBtnLocator);
@@ -128,7 +123,7 @@ class ReadabilityAndScopeTest {
         var juniorItems = new HashSet<>(fetchIds());
         juniorItems.add("FINAL_AUDIT_ORDER");
 
-        // SENIOR PATTERN (Guideline G2 / Effective Java Item 57):
+        // SENIOR PATTERN:
         // Declare local variables immediately adjacent to their usage with clear collection semantics.
         var orderedAuditIds = new ArrayList<String>(fetchIds());
         orderedAuditIds.add("FINAL_AUDIT_ORDER");

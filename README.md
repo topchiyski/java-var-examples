@@ -1,105 +1,45 @@
-# Java `var` (Local-Variable Type Inference) Examples
+# Java `var` Examples
 
-> **📖 Read the article first: [Why Your Java `var` Code Fails Code Review](https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome)** (LinkedIn)
-
-This repository is a complementary resource to my LinkedIn article [Why Your Java `var` Code Fails Code Review](https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome). The article explains the principles, guidelines, and reasoning; this repository contains compilable Java 21+ versions of its examples ([JEP 286](https://openjdk.org/jeps/286)), so you can run them, inspect the bytecode, and try your own changes.
-
-## How to Use This Repository with the Article
-
-1. Read a section of the [article](https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome).
-2. Find its label (for example, **G6** or **3C**) in the [Article Cross-Reference](#article-cross-reference) table to get the matching file.
-3. Run that file's tests, e.g. `mvn test -Dtest=DiamondOperatorTrapTest`, and experiment with the code.
+This repository is a complementary resource to my LinkedIn article [Why Your Java `var` Code Fails Code Review](https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome). It contains runnable Java 21 examples of where `var` helps, where it hurts, and where it infers a surprising type.
 
 ## Prerequisites
 
 - JDK 21 or later
-- Apache Maven 3.6.3 or later
+- Maven 3.6.3 or later
 
-## Repository Structure
+## What's Inside
 
-```text
-java-var-examples/
-├── LICENSE
-├── pom.xml
-├── README.md
-└── src/
-    ├── main/java/com/acme/
-    │   ├── var/Var.java
-    │   └── mechanics/BytecodeParityDemo.java
-    └── test/java/com/acme/automation/
-        ├── support/TestMocks.java
-        ├── good/
-        │   ├── BoilerplateEliminationTest.java
-        │   └── PipelineDecompositionTest.java
-        ├── bad/
-        │   └── ReadabilityAndScopeTest.java
-        └── ugly/
-            ├── AnonymousClassSpyTest.java
-            ├── DiamondOperatorTrapTest.java
-            ├── IntersectionTypeTrapTest.java
-            └── PrimitiveOverloadTrapTest.java
-```
+| File | Shows |
+|---|---|
+| `main/.../var/Var.java` | `var` is not a reserved keyword, so it is still a legal name |
+| `main/.../mechanics/BytecodeParityDemo.java` | `var` compiles to the same bytecode as explicit types |
+| `test/.../good/BoilerplateEliminationTest.java` | Removing redundant types |
+| `test/.../good/PipelineDecompositionTest.java` | Splitting long stream chains into named steps |
+| `test/.../bad/ReadabilityAndScopeTest.java` | Unclear names and wide variable scope |
+| `test/.../ugly/AnonymousClassSpyTest.java` | Anonymous class types vs. local records |
+| `test/.../ugly/IntersectionTypeTrapTest.java` | Mixed `List.of()` arguments infer an intersection type |
+| `test/.../ugly/DiamondOperatorTrapTest.java` | `var` with `<>` infers `Object` |
+| `test/.../ugly/PrimitiveOverloadTrapTest.java` | `int` literals and the `List.remove(int)` overload |
 
-Each example is a pair: an anti-pattern or "before" version next to the recommended version. Comments marked `TRAP`, `JUNIOR TRAP`, or `BAD` show the problem; `SENIOR PATTERN` / `GOOD` show the fix. Every test class and test method has Javadoc explaining what it demonstrates.
+Each test puts the problem (`BAD`, `TRAP`) next to the fix (`GOOD`, `SENIOR PATTERN`). `TestMocks` provides simple stand-ins for Selenium and RestAssured so everything runs without a browser or server; don't treat them as a reference for the real APIs.
 
-- **`main/`** – Pillar 1: how `var` works in the compiler.
-- **`test/.../good/`** – Recommended uses of `var` in test code.
-- **`test/.../bad/`** – Common misuses of `var`, each shown next to the corrected version.
-- **`test/.../ugly/`** – Type system edge cases where `var` infers a surprising type, each with the safer alternative.
-- **`test/.../support/`** – Lightweight stubs for WebDriver, RestAssured, and DTOs, so every example compiles and runs without a browser or server.
+## Running
 
-> **Note:** The stubs in `TestMocks` mimic the shape of the real Selenium and RestAssured APIs but return fixed canned values. For example, `WebDriverWait.until()` evaluates its condition once without waiting, and `RestAssuredStub.as()` always returns the same map. They exist only to make the `var` examples compile and run; don't use them as a reference for real API behavior.
-
-## Article Cross-Reference
-
-Labels match the [article](https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome): **P** = Principle, **G** = Guideline, **3A–3D** = edge cases in section 3. Principles and guidelines not listed here (such as P1 and G5) are covered in the article only.
-
-| Article reference | Topic | File |
-|---|---|---|
-| Pillar 1 | `var` is a contextual keyword, not a reserved keyword, so it is still a legal identifier (JLS §3.8, §3.9) | `main/.../var/Var.java` |
-| Pillar 1 | Identical bytecode with and without `var` | `main/.../mechanics/BytecodeParityDemo.java` |
-| G3 | Eliminating redundant manifest types | `good/BoilerplateEliminationTest.java` |
-| G4 | Breaking monolithic chains into diagnostic checkpoints | `good/PipelineDecompositionTest.java` |
-| P2, P3, G1, G2 | Opaque helper calls and wide variable scope | `bad/ReadabilityAndScopeTest.java` |
-| 3A | Non-denotable anonymous types vs. local records | `ugly/AnonymousClassSpyTest.java` |
-| 3B | Heterogeneous `List.of()` and Least Upper Bound (LUB) inference | `ugly/IntersectionTypeTrapTest.java` |
-| 3C, G6 | `var` + `<>` falls back to `Object` | `ugly/DiamondOperatorTrapTest.java` |
-| 3D, G7 | Numeric literals and the `List.remove(int)` overload | `ugly/PrimitiveOverloadTrapTest.java` |
-
-## Quick Commands
-
-### 1. Run the Test Suite
+Run all tests:
 ```bash
 mvn clean test
 ```
 
-To run the examples for a single article section, pass the test class name:
+Run one example:
 ```bash
 mvn test -Dtest=PrimitiveOverloadTrapTest
 ```
 
-### 2. Verify Bytecode Parity (`javap`)
-Compile the project and inspect the generated bytecode and `LocalVariableTable` for `BytecodeParityDemo`:
+Compare the bytecode of the explicit and `var` versions:
 ```bash
 mvn compile
 javap -v -c target/classes/com/acme/mechanics/BytecodeParityDemo.class
 ```
-`computeTotalExplicit()` and `computeTotalInferred()` emit the same JVM instructions (`ldc`, `astore_1`, `astore_2`, `istore_3`) and identical `LocalVariableTable` / `LocalVariableTypeTable` descriptors. Only the `LineNumberTable` differs, because the methods are on different source lines.
-
-`javap` ships with the JDK. If it isn't on your `PATH`, run it from `$JAVA_HOME/bin`.
-
-### 3. Generate Javadocs
-Generate HTML API documentation for the production classes:
-```bash
-mvn javadoc:javadoc
-```
-The documentation is written to `target/reports/apidocs/index.html`.
-
-Most of the explanations are in the test classes. They are package-private, so pass `-Dshow=private` to include them and their helper methods:
-```bash
-mvn javadoc:test-javadoc -Dshow=private
-```
-The documentation is written to `target/reports/testapidocs/index.html`.
 
 ## Contact
 
@@ -107,4 +47,4 @@ Stoyan Topchiyski – [LinkedIn](https://www.linkedin.com/in/stoyan-topchiyski/)
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+[MIT](LICENSE)
