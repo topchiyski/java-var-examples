@@ -16,7 +16,6 @@ This repository is a complementary resource to my LinkedIn article [Why Your Jav
 | `test/.../good/BoilerplateEliminationTest.java` | Removing redundant types |
 | `test/.../good/PipelineDecompositionTest.java` | Splitting long stream chains into named steps |
 | `test/.../bad/ReadabilityAndScopeTest.java` | Unclear names and wide variable scope |
-| `test/.../ugly/AnonymousClassSpyTest.java` | Anonymous class types vs. local records |
 | `test/.../ugly/IntersectionTypeTrapTest.java` | Mixed `List.of()` arguments infer an intersection type |
 | `test/.../ugly/DiamondOperatorTrapTest.java` | `var` with `<>` infers `Object` |
 | `test/.../ugly/PrimitiveOverloadTrapTest.java` | `int` literals and the `List.remove(int)` overload |
