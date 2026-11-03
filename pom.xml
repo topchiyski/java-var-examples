@@ -5,15 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.acme</groupId>
-    <artifactId>java-var-type-inference-examples</artifactId>
+    <artifactId>var-good-bad-ugly</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>Java var Examples</name>
+    <name>var: The Good, the Bad and the Ugly</name>
     <description>
         Companion examples for the LinkedIn article "Why Your Java var Code Fails Code Review":
         https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome
     </description>
-    <url>https://github.com/topchiyski/java-var-examples</url>
+    <url>https://github.com/topchiyski/var-good-bad-ugly</url>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>

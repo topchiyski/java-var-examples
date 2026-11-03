@@ -1,4 +1,4 @@
-# Java `var` Examples
+# `var`: The Good, the Bad and the Ugly
 
 This repository is a complementary resource to my LinkedIn article [Why Your Java `var` Code Fails Code Review](https://www.linkedin.com/pulse/why-your-java-var-code-fails-review-stoyan-topchiyski-xwome). It contains runnable Java 21 examples of where `var` helps, where it hurts, and where it infers a surprising type.
 
