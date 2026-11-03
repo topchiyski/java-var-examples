@@ -43,7 +43,7 @@ javap -v -c target/classes/com/acme/mechanics/BytecodeParityDemo.class
 
 ## Contact
 
-Stoyan Topchiyski – [LinkedIn](https://www.linkedin.com/in/stoyan-topchiyski/)
+For questions or feedback, contact me on [LinkedIn](https://www.linkedin.com/in/stoyan-topchiyski/).
 
 ## License
 
